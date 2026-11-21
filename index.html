@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EcoSort — Smart Waste Management</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Navigasi -->
+    <header class="navbar">
+        <div class="container nav-content">
+            <div class="logo">
+                <span class="logo-icon">♻️</span>
+                <h1>EcoSort</h1>
+            </div>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="#panduan">Panduan</a></li>
+                    <li><a href="#kategori">Kategori & Olah</a></li>
+                    <li><a href="#lens">EcoLens AI</a></li>
+                    <li><a href="#bank-sampah">Bank Sampah</a></li>
+                    <li><a href="#kontribusi">Kontribusi</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container hero-content">
+            <span class="badge">Smart Waste Management</span>
+            <h2>Pilah Sampah Lebih Cerdas untuk Lingkungan Lebih Bersih</h2>
+            <p>Edukasi pemilahan sampah Organik, Anorganik, dan B3 lengkap dengan pemindai kategori pintar, direktori bank sampah, dan pelacak kontribusi daur ulang Anda.</p>
+            <div class="hero-buttons">
+                <a href="#lens" class="btn btn-primary">📸 Coba EcoLens Deteksi Sampah</a>
+                <a href="#panduan" class="btn btn-secondary">Pelajari Panduan</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 1. Panduan Pemilahan Sampah -->
+    <section id="panduan" class="section">
+        <div class="container">
+            <h2 class="section-title">Panduan Langkah Pemilahan Sampah</h2>
+            <p class="section-subtitle">Ikuti 4 langkah mudah sebelum membuang atau menyetorkan sampah ke bank sampah.</p>
+            <div class="steps-grid">
+                <div class="step-card">
+                    <div class="step-number">1</div>
+                    <h3>Pisahkan dari Sumber</h3>
+                    <p>Sediakan minimal 3 wadah terpisah di rumah untuk sampah Organik, Anorganik, dan B3 agar tidak tercampur.</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">2</div>
+                    <h3>Bersihkan & Keringkan</h3>
+                    <p>Bilas kemasan botol, kaleng, atau wadah plastik dari sisa makanan/minuman lalu keringkan agar tidak berbau.</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">3</div>
+                    <h3>Padatkan Volume</h3>
+                    <p>Pipihkan botol plastik, lipat kardus, dan remukkan kaleng aluminium untuk menghemat ruang penyimpanan.</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">4</div>
+                    <h3>Salurkan dengan Tepat</h3>
+                    <p>Olah sampah organik menjadi kompos, setor anorganik ke Bank Sampah, dan serahkan B3 ke titik pengumpulan khusus.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 2. Kategori Sampah dan Cara Pengolahannya -->
+    <section id="kategori" class="section bg-light">
+        <div class="container">
+            <h2 class="section-title">Kategori Sampah & Cara Pengolahannya</h2>
+            <p class="section-subtitle">Klik tab kategori di bawah untuk melihat detail contoh sampah dan metode pengolahannya.</p>
+
+            <div class="tabs">
+                <button class="tab-btn active" data-category="organik">🌿 Sampah Organik</button>
+                <button class="tab-btn" data-category="anorganik">♻️ Sampah Anorganik</button>
+                <button class="tab-btn" data-category="b3">☣️ Sampah B3 (Berbahaya)</button>
+            </div>
+
+            <div id="category-display" class="category-card">
+                <!-- Konten diisi dinamis oleh script.js -->
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. Fitur EcoLens (Simulasi Google Lens untuk Klasifikasi Foto Sampah) -->
+    <section id="lens" class="section">
+        <div class="container">
+            <h2 class="section-title">📸 EcoLens — Deteksi Kategori Foto Sampah</h2>
+            <p class="section-subtitle">Ambil foto atau unggah gambar sampah untuk mengidentifikasi kategori dan saran pengolahannya.</p>
+
+            <div class="lens-wrapper">
+                <div class="lens-upload-box">
+                    <input type="file" id="waste-image-input" accept="image/*" capture="environment" hidden>
+                    <label for="waste-image-input" class="upload-area" id="upload-area">
+                        <span class="upload-icon">📷</span>
+                        <strong>Klik untuk Ambil Foto atau Unggah Gambar</strong>
+                        <small>Mendukung format JPG, PNG, WEBP (Bisa langsung kamera HP)</small>
+                    </label>
+                    <div id="preview-container" class="preview-container hidden">
+                        <img id="image-preview" src="" alt="Pratinjau Sampah">
+                        <button type="button" id="reset-image-btn" class="btn-small">Ganti Foto</button>
+                    </div>
+                </div>
+
+                <div class="lens-result-box">
+                    <div class="form-group">
+                        <label for="waste-hint">Petunjuk Objek / Nama Barang (Opsional untuk akurasi):</label>
+                        <input type="text" id="waste-hint" placeholder="Contoh: botol plastik, baterai bekas, kulit pisang, lampu neon...">
+                    </div>
+                    <button type="button" id="analyze-btn" class="btn btn-primary full-width">🔍 Analisis Kategori Sampah</button>
+
+                    <div id="lens-result" class="lens-result hidden">
+                        <!-- Hasil deteksi muncul di sini -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. Lokasi Bank Sampah -->
+    <section id="bank-sampah" class="section bg-light">
+        <div class="container">
+            <h2 class="section-title">📍 Lokasi Bank Sampah Terdekat</h2>
+            <p class="section-subtitle">Cari titik penyetoran sampah terpilah di sekitar Anda.</p>
+
+            <div class="search-bar">
+                <input type="text" id="bank-search" placeholder="Cari nama bank sampah atau wilayah...">
+            </div>
+
+            <div id="bank-list" class="bank-grid">
+                <!-- Daftar bank sampah dirender oleh script.js -->
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. Pencatatan Kontribusi Daur Ulang -->
+    <section id="kontribusi" class="section">
+        <div class="container">
+            <h2 class="section-title">📊 Pencatatan Kontribusi Daur Ulang</h2>
+            <p class="section-subtitle">Catat setiap sampah yang berhasil Anda pilah dan daur ulang. Data tersimpan otomatis di browser Anda.</p>
+
+            <div class="stats-grid">
+                <div class="stat-box">
+                    <span class="stat-label">Total Berat Terpilah</span>
+                    <strong id="total-weight">0 kg</strong>
+                </div>
+                <div class="stat-box">
+                    <span class="stat-label">Estimasi Emisi CO₂ Dicegah</span>
+                    <strong id="total-co2">0 kg CO₂</strong>
+                </div>
+                <div class="stat-box">
+                    <span class="stat-label">Total Aktivitas Setor</span>
+                    <strong id="total-entries">0 kali</strong>
+                </div>
+            </div>
+
+            <div class="contribution-layout">
+                <form id="contribution-form" class="contrib-form">
+                    <h3>Tambah Catatan Baru</h3>
+                    <div class="form-group">
+                        <label for="contrib-item">Jenis / Nama Sampah</label>
+                        <input type="text" id="contrib-item" placeholder="Contoh: Botol PET & Kardus" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="contrib-category">Kategori</label>
+                        <select id="contrib-category" required>
+                            <option value="Organik">Organik</option>
+                            <option value="Anorganik">Anorganik</option>
+                            <option value="B3">B3 (Bahan Berbahaya & Beracun)</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="contrib-weight">Berat (kg)</label>
+                        <input type="number" id="contrib-weight" step="0.1" min="0.1" placeholder="Contoh: 2.5" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary full-width">+ Simpan Kontribusi</button>
+                </form>
+
+                <div class="contrib-history">
+                    <div class="history-header">
+                        <h3>Riwayat Kontribusi Anda</h3>
+                        <button type="button" id="clear-history-btn" class="btn-danger-outline">Hapus Semua</button>
+                    </div>
+                    <div class="table-responsive">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Tanggal</th>
+                                    <th>Item Sampah</th>
+                                    <th>Kategori</th>
+                                    <th>Berat</th>
+                                    <th>Aksi</th>
+                                </tr>
+                            </thead>
+                            <tbody id="contribution-table-body">
+                                <!-- Riwayat dirender oleh script.js -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container footer-content">
+            <p><strong>EcoSort — Smart Waste Management</strong> | Edukasi Pemilahan Sampah Organik, Anorganik & B3</p>
+            <p class="footer-note">Siap Deploy Statis (GitHub Pages / Netlify)</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
